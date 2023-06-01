@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        ############git仓库配置
+        git:
+          uri: https://github.com/foreverliweier/springcloud-test-distrbuted-config.git
+          username: 1552743651@qq.com
+          password: nico8baoziiscat
+          search-paths: config-repo-demo
+        encrypt:
+          enabled: false  #若测试加密功能，则开启加密功能；true 开启，false 关闭
+server:
+  port: 1201
+
+security: #只适用于开发和测试阶段，不应在生产环境中使用
+  user:
+    name: admin
+    password: secret
+    role: admin
+##注释中内容与key 是两种方式，encrypt.key是用key进行对称性加密。非对称性加密RSA keystore保存公钥/私钥对 用私钥进行加密
+encrypt:
+#  key-store:
+#    location: classpath:/config-server.keystore
+#    alias: config-server
+#    password: iamalice
+#    secret: iamalice
+  key: babyinthecar
+
+
+# curl -X POST --data 'i am xiaoming'  localhost:1201/encrypt  -u user -p
+# curl -X POST --data 'c698031605f7131e18bca0123816f95e2b9c2e488ed200659f3c850075c9c589'  localhost:1201/decrypt -u user -p
+
+eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:1001/eureka/

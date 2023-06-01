@@ -1,0 +1,22 @@
+management:
+  security:
+    enabled: false
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      uri: http://localhost:1201/
+      profile: dev
+      label: main
+      discovery:
+        enabled: true #开启通过服务来访问Config Server的功能
+        service-id: config-server #来指定Config Server注册的服务名
+server:
+  port: 2001
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1001/eureka #指定服务注册中心，用于服务的注册与发现
+
+##该文件名称必须是bootstrap.yml或bootstrap.properties 不可以是application.yml application.properties
